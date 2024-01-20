@@ -3,5 +3,4 @@
 This project on the introduction of violations, prescriptions... which were discovered during the branch inspection.
 The project is useful for the Department of Labor Protection. It automates their work
 
-This project 
-Used clean architecture in project
+This project used clean architecture
