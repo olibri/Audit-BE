@@ -6,16 +6,16 @@ The project is useful for the Department of Labor Protection. It automates their
 This project used clean architecture
 
 If u want launch project uncommented code ~\AuditInfrastructure\Data\AuditDbContext.cs 
-       ```
+       
         public AuditDbContext(DbContextOptions<AuditDbContext> options) :
            base(options)
         {
             //Database.EnsureDeleted();
             //Database.EnsureCreated();
-        }```
+        }
 
 and ~\Audit\Program.cs
-     ```
+     
     public static void Main(string[] args)
     {
         var host = CreateHostBuilder(args).Build();
@@ -35,4 +35,4 @@ and ~\Audit\Program.cs
         //    }
         //}
         host.Run();
-    }```
+    }
