@@ -55,7 +55,7 @@ namespace Audit
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(x => 
             {
-                x.RequireHttpsMetadata = false; // Set True in development
+                x.RequireHttpsMetadata = true; // Set True in development
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {

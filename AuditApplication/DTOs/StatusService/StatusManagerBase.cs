@@ -40,8 +40,6 @@ namespace AuditApplication.DTOs.StatusService
             }
             return item;
         }
-
-
         protected abstract void SetStatus(T item, string statusName);
     }
 }

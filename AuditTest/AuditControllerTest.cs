@@ -15,18 +15,19 @@ using AuditDomain.Entity;
 using AuditApplication.DTOs.AuditUserDTO;
 using AuditApplication.DTOs;
 using AutoFixture;
+using AuditApplication.DTOs.StatusService;
 
 namespace AuditTest
 {
     public class AuditControllerTest
     {      
         private readonly Mock<IMainService<Domain.Audit, AuditDTOPost, AuditDTOGet>> mockContext;
-        private readonly Mock<IStatusManager<AuditDTOGet>> mockAuthOption;
+        private readonly Mock<StatusManagerBase<AuditDTOGet>> mockAuthOption;
         private readonly AuditController controller;
         public AuditControllerTest()
         {    
             mockContext = new Mock<IMainService<Domain.Audit, AuditDTOPost, AuditDTOGet>>();
-            mockAuthOption = new Mock<IStatusManager<AuditDTOGet>>();    
+            mockAuthOption = new Mock<StatusManagerBase<AuditDTOGet>>();    
             controller = new AuditController(mockContext.Object, mockAuthOption.Object);
         }
 
@@ -36,8 +37,8 @@ namespace AuditTest
             var testAudit = new Fixture().Create<AuditDTOGet>();
             var testAuditList = new List<AuditDTOGet> { testAudit };
 
-            mockAuthOption.Setup(m => m.UpdateStatus(It.IsAny<IEnumerable<AuditDTOGet>>()))
-              .Returns((IEnumerable<AuditDTOGet> audits) => audits);  
+            mockAuthOption.Setup(m => m.UpdateStatusForSingleItem(It.IsAny<AuditDTOGet>()))
+              .Returns((AuditDTOGet audits) => audits);  
 
             mockContext.Setup(repo => repo.GetExistAsync()).
                 ReturnsAsync(testAuditList);

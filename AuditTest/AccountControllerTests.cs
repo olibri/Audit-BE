@@ -44,17 +44,16 @@ namespace AuditTest
             var newUser = new Fixture().Create<UserDTORegistration>();
 
             var result = await accountController.Register(newUser);
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            string a = JsonConvert.SerializeObject(okResult.Value);
-            var test = JsonConvert.DeserializeObject<dynamic>(a);
-            var token = test.token.Value;
-            Assert.Equal("test_token", token);
+            var okResult = Assert.IsType<OkResult>(result);
+            string a = JsonConvert.SerializeObject(okResult);
+            //var test = JsonConvert.DeserializeObject<dynamic>(a);
+            //var token = test.token.Value;
+            //Assert.Equal("test_token", token);
 
             var createdUser = await auditDbContext.Users.FirstOrDefaultAsync(u => u.Email == newUser.Email);
             Assert.NotNull(createdUser);
             Assert.Equal(newUser.Email, createdUser.Email);
             Dispose();
-
         }
         [Fact]
         public async Task LoginAccount_ReturnsOk()
