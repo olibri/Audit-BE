@@ -46,7 +46,7 @@ namespace Audit
                 options.AddPolicy(name: "MyCORS",
                     builder =>
                     {
-                        builder.WithOrigins("https://localhost:4200")
+                        builder.WithOrigins("http://localhost:4201")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                     });
@@ -55,7 +55,7 @@ namespace Audit
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(x => 
             {
-                x.RequireHttpsMetadata = true; // Set True in development
+                x.RequireHttpsMetadata = false; // Set True in development
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
