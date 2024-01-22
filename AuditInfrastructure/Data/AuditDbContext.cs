@@ -9,7 +9,7 @@ namespace AuditInfrastructure.Data
            base(options)
         {
             //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         public DbSet<Branch> Branches { get; set; }
